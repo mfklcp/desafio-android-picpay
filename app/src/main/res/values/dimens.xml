@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="picpay_s_xxxs">8dp</dimen>
+    <dimen name="picpay_s_xxs">12dp</dimen>
+    <dimen name="picpay_s_xs">16dp</dimen>
+    <dimen name="picpay_s_s">24dp</dimen>
+    <dimen name="picpay_s_xl">48dp</dimen>
+    <dimen name="picpay_s_xxl">52dp</dimen>
+</resources>

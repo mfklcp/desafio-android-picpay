@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         service.getUsers()
             .enqueue(object : Callback<List<User>> {
                 override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                    val message = getString(R.string.error)
+                    val message = getString(R.string.error_api)
 
                     mainBinding.userListProgressBar.gone()
                     mainBinding.recyclerView.gone()
