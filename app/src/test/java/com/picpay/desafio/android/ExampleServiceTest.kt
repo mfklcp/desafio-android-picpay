@@ -8,9 +8,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 class ExampleServiceTest {
-
     private val api = mock<PicPayService>()
-
     private val service = ExampleService(api)
 
     @Test

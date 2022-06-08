@@ -13,7 +13,6 @@ import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.RecordedRequest
 import org.junit.Test
 
-
 class MainActivityTest {
 
     private val server = MockWebServer()
@@ -43,7 +42,6 @@ class MainActivityTest {
         }
 
         server.start(serverPort)
-
         launchActivity<MainActivity>().apply {
             // TODO("validate if list displays items returned by server")
         }

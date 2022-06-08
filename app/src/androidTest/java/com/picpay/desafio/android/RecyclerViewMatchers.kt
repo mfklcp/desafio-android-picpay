@@ -10,7 +10,6 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 
 object RecyclerViewMatchers {
-
     fun atPosition(
         position: Int,
         itemMatcher: Matcher<View>
