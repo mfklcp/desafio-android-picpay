@@ -11,13 +11,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel() : ViewModel() {
+class MainViewModel(private val picPayService: PicPayService) : ViewModel() {
 
     private val internalContactsList = MutableLiveData<List<User>>()
     private val internalFailure = MutableLiveData<Throwable>()
     private val internalLoading = MutableLiveData<Boolean>()
-
-    private val picPayService = PicPayService.create()
 
     val contactsList: LiveData<List<User>> = internalContactsList
     val failure: LiveData<Throwable> = internalFailure

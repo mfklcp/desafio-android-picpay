@@ -3,30 +3,22 @@ package com.picpay.desafio.android.presentation
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.picpay.desafio.android.R
 import com.picpay.desafio.android.core.extensions.gone
 import com.picpay.desafio.android.core.extensions.visible
 import com.picpay.desafio.android.databinding.ActivityMainBinding
 import com.picpay.desafio.android.databinding.ListItemUserBinding
-import com.picpay.desafio.android.domain.model.User
 import com.picpay.desafio.android.presentation.adapter.UserListAdapter
-import com.picpay.desafio.android.presentation.viewmodel.MainVMFactory
 import com.picpay.desafio.android.presentation.viewmodel.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainBinding: ActivityMainBinding
     private lateinit var itemUserBinding: ListItemUserBinding
     private val userListAdapter = UserListAdapter()
-
-    private val mainViewModel: MainViewModel by lazy {
-        ViewModelProvider(
-            this,
-            MainVMFactory())[MainViewModel::class.java]
-    }
+    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,24 +49,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeData() {
-        mainViewModel.loading.observe(this, Observer<Boolean> { loading ->
+        mainViewModel.loading.observe(this) { loading ->
             if(loading) {
                 itemUserBinding.progressBarItemUser.visible()
             }else {
                 itemUserBinding.progressBarItemUser.gone()
             }
-        })
+        }
 
-        mainViewModel.contactsList.observe(this, Observer<List<User>> { users ->
+        mainViewModel.contactsList.observe(this) { users ->
             userListAdapter.users = users
-        })
+        }
 
-        mainViewModel.failure.observe(this, Observer<Throwable> {
+        mainViewModel.failure.observe(this) {
             mainBinding.recyclerView.gone()
 
             val message = getString(R.string.error_api)
 
             Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
-        })
+        }
     }
 }
