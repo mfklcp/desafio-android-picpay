@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.picpay.desafio.android.R
+import com.picpay.desafio.android.core.extensions.gone
 import com.picpay.desafio.android.domain.model.User
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -38,10 +39,7 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserListItemViewHol
 
     override fun getItemCount(): Int = users.size
 
-    class UserListItemViewHolder(
-        itemView: View
-    ) : RecyclerView.ViewHolder(itemView) {
-
+    class UserListItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(user: User) {
             itemView.nameItemUser.text = user.name
             itemView.usernameItemUser.text = user.username
@@ -51,11 +49,11 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserListItemViewHol
                 .error(R.drawable.ic_round_account_circle)
                 .into(itemView.pictureItemUser, object : Callback {
                     override fun onSuccess() {
-                        itemView.progressBarItemUser.visibility = View.GONE
+                        itemView.progressBarItemUser.gone()
                     }
 
                     override fun onError(e: Exception?) {
-                        itemView.progressBarItemUser.visibility = View.GONE
+                        itemView.progressBarItemUser.gone()
                     }
                 })
         }

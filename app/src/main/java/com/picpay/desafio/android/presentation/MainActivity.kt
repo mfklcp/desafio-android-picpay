@@ -1,61 +1,80 @@
 package com.picpay.desafio.android.presentation
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.picpay.desafio.android.R
 import com.picpay.desafio.android.core.extensions.gone
 import com.picpay.desafio.android.core.extensions.visible
 import com.picpay.desafio.android.databinding.ActivityMainBinding
-import com.picpay.desafio.android.domain.api.PicPayService
+import com.picpay.desafio.android.databinding.ListItemUserBinding
 import com.picpay.desafio.android.domain.model.User
 import com.picpay.desafio.android.presentation.adapter.UserListAdapter
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.picpay.desafio.android.presentation.viewmodel.MainVMFactory
+import com.picpay.desafio.android.presentation.viewmodel.MainViewModel
 
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var mainBinding: ActivityMainBinding
-    private lateinit var mainAdapter: UserListAdapter
+    private lateinit var itemUserBinding: ListItemUserBinding
+    private val userListAdapter = UserListAdapter()
 
-    private val service: PicPayService by lazy {
-        PicPayService.create()
+    private val mainViewModel: MainViewModel by lazy {
+        ViewModelProvider(
+            this,
+            MainVMFactory())[MainViewModel::class.java]
     }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
 
-        mainAdapter = UserListAdapter()
+        itemUserBinding = ListItemUserBinding.inflate(layoutInflater)
 
+        initViews()
+        initValues()
+        observeData()
+    }
+
+    private fun initViews() {
+        createRecyclerView()
+    }
+
+    private fun createRecyclerView() {
         mainBinding.recyclerView.apply {
-            adapter = mainAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = userListAdapter
         }
+    }
 
-        mainBinding.userListProgressBar.visible()
+    private fun initValues() {
+        mainViewModel.init()
+    }
 
-        service.getUsers()
-            .enqueue(object : Callback<List<User>> {
-                override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                    val message = getString(R.string.error_api)
+    private fun observeData() {
+        mainViewModel.loading.observe(this, Observer<Boolean> { loading ->
+            if(loading) {
+                itemUserBinding.progressBarItemUser.visible()
+            }else {
+                itemUserBinding.progressBarItemUser.gone()
+            }
+        })
 
-                    mainBinding.userListProgressBar.gone()
-                    mainBinding.recyclerView.gone()
+        mainViewModel.contactsList.observe(this, Observer<List<User>> { users ->
+            userListAdapter.users = users
+        })
 
-                    Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT)
-                        .show()
-                }
+        mainViewModel.failure.observe(this, Observer<Throwable> {
+            mainBinding.recyclerView.gone()
 
-                override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                    mainBinding.userListProgressBar.gone()
-                    mainAdapter.users = response.body()!!
-                }
-            })
+            val message = getString(R.string.error_api)
+
+            Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+        })
     }
 }
