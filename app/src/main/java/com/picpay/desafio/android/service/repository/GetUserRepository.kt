@@ -25,6 +25,6 @@ class GetUserRepository(
     }
 
     companion object {
-        const val API_FAIL = "Falha na busca!"
+        const val API_FAIL = "Falhou! A lista veio vazia :-("
     }
 }
