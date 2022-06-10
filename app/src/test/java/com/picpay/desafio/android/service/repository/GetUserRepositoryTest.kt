@@ -1,7 +1,7 @@
 package com.picpay.desafio.android.service.repository
 
 import com.picpay.desafio.android.domain.model.User
-import com.picpay.desafio.android.factory.UserFactory.createListUser
+import com.picpay.desafio.android.factory.UserFactory.createListUserResponse
 import com.picpay.desafio.android.service.api.PicPayApi
 import com.picpay.desafio.android.service.mapper.UserMapper
 import com.picpay.desafio.android.utils.PicPayResult
@@ -28,9 +28,9 @@ class GetUserRepositoryTest {
     }
 
     @Test
-    fun `should return User list when call succeed`() =
+    fun `should return User list when call succeed in alphabetic order`() =
         runBlocking {
-            coEvery { picPayApi.getUsers() } returns createListUser()
+            coEvery { picPayApi.getUsers() } returns createListUserResponse()
 
             val result: PicPayResult<List<User>> = getUserRepository.getListUsers()
 
@@ -38,7 +38,7 @@ class GetUserRepositoryTest {
                 picPayApi.getUsers()
             }
 
-            assertThat(result, instanceOf(PicPayResult.Success::class.java) )
+            assertThat(result, instanceOf(PicPayResult.Success::class.java))
             assertEquals(
                 listOf(
                     User(1, "img", "name", "username"),
@@ -60,7 +60,7 @@ class GetUserRepositoryTest {
                 picPayApi.getUsers()
             }
 
-            assertThat(result, instanceOf(PicPayResult.Error::class.java) )
+            assertThat(result, instanceOf(PicPayResult.Error::class.java))
             assertEquals("Falhou! A lista veio vazia :-(", (result as PicPayResult.Error).exception)
         }
 
@@ -75,7 +75,7 @@ class GetUserRepositoryTest {
                 picPayApi.getUsers()
             }
 
-            assertThat(result, instanceOf(PicPayResult.Error::class.java) )
+            assertThat(result, instanceOf(PicPayResult.Error::class.java))
             assertEquals("java.util.concurrent.TimeoutException", (result as PicPayResult.Error).exception)
         }
 
