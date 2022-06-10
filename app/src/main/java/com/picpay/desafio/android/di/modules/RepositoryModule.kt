@@ -7,6 +7,6 @@ class RepositoryModule  {
     fun provide() = listOf(repositoryModule)
 
     private val repositoryModule = module {
-        single<GetUserRepository> { GetUserRepository(get()) }
+        single<GetUserRepository> { GetUserRepository(get(), get()) }
     }
 }
