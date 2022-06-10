@@ -8,7 +8,7 @@ import com.picpay.desafio.android.R
 import com.picpay.desafio.android.databinding.ActivityContactsBinding
 import com.picpay.desafio.android.databinding.ListItemUserBinding
 import com.picpay.desafio.android.presentation.adapter.UserListAdapter
-import com.picpay.desafio.android.presentation.viewmodel.MainViewModel
+import com.picpay.desafio.android.presentation.viewmodel.ContactsViewModel
 import com.picpay.desafio.android.utils.extensions.gone
 import com.picpay.desafio.android.utils.extensions.visible
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mainBinding: ActivityContactsBinding
     private lateinit var itemUserBinding: ListItemUserBinding
     private val userListAdapter = UserListAdapter()
-    private val mainViewModel: MainViewModel by viewModel()
+    private val mainViewModel: ContactsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

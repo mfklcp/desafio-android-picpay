@@ -1,10 +1,11 @@
 package com.picpay.desafio.android.service.repository
 
 import com.picpay.desafio.android.domain.model.User
-import com.picpay.desafio.android.factory.UserFactory.createListUserResponse
 import com.picpay.desafio.android.service.api.PicPayApi
 import com.picpay.desafio.android.service.mapper.UserMapper
+import com.picpay.desafio.android.util.UserFactory.createListUserResponse
 import com.picpay.desafio.android.utils.PicPayResult
+import com.picpay.desafio.android.utils.extensions.get
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -45,7 +46,7 @@ class GetUserRepositoryTest {
                     User(2, "img2", "name2", "username2"),
                     User(3, "img3", "name3", "username3"),
                 ),
-                (result as PicPayResult.Success).data
+                result.get()
             )
         }
 

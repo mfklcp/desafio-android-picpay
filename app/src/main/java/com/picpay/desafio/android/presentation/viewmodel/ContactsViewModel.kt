@@ -9,7 +9,7 @@ import com.picpay.desafio.android.domain.usecase.GetUserUseCase
 import com.picpay.desafio.android.utils.result
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val getUserUseCase: GetUserUseCase) : ViewModel() {
+class ContactsViewModel(private val getUserUseCase: GetUserUseCase) : ViewModel() {
 
     private val internalUserList = MutableLiveData<List<User>>()
     private val internalFailure = MutableLiveData<String>()
