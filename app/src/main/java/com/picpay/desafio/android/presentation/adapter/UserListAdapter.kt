@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.picpay.desafio.android.R
-import com.picpay.desafio.android.core.extensions.gone
 import com.picpay.desafio.android.domain.model.User
+import com.picpay.desafio.android.utils.extensions.gone
+import com.picpay.desafio.android.utils.extensions.visible
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_user.view.*
@@ -43,7 +44,7 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserListItemViewHol
         fun bind(user: User) {
             itemView.nameItemUser.text = user.name
             itemView.usernameItemUser.text = user.username
-            itemView.progressBarItemUser.visibility = View.VISIBLE
+            itemView.progressBarItemUser.visible()
             Picasso.get()
                 .load(user.img)
                 .error(R.drawable.ic_round_account_circle)

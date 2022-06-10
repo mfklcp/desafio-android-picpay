@@ -1,12 +1,12 @@
 package com.picpay.desafio.android.di.modules
 
-import com.picpay.desafio.android.domain.api.PicPayService
+import com.picpay.desafio.android.data.api.PicPayApi
 import org.koin.dsl.module
 
 class ApiModule {
-    fun provide() = listOf(apiModuleKoin)
+    fun provide() = listOf(apiModule)
 
-    private val apiModuleKoin = module {
-        single<PicPayService> { PicPayService.create() }
+    private val apiModule = module {
+        single<PicPayApi> { PicPayApi.create() }
     }
 }

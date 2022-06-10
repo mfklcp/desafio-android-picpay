@@ -1,4 +1,4 @@
-package com.picpay.desafio.android.core.extensions
+package com.picpay.desafio.android.utils.extensions
 
 import android.view.View
 import android.view.View.GONE

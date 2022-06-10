@@ -5,12 +5,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.picpay.desafio.android.R
-import com.picpay.desafio.android.core.extensions.gone
-import com.picpay.desafio.android.core.extensions.visible
 import com.picpay.desafio.android.databinding.ActivityMainBinding
 import com.picpay.desafio.android.databinding.ListItemUserBinding
 import com.picpay.desafio.android.presentation.adapter.UserListAdapter
 import com.picpay.desafio.android.presentation.viewmodel.MainViewModel
+import com.picpay.desafio.android.utils.extensions.gone
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -49,14 +48,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeData() {
-        mainViewModel.loading.observe(this) { loading ->
-            if(loading) {
-                itemUserBinding.progressBarItemUser.visible()
-            }else {
-                itemUserBinding.progressBarItemUser.gone()
-            }
-        }
-
         mainViewModel.contactsList.observe(this) { users ->
             userListAdapter.users = users
         }
@@ -66,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
             val message = getString(R.string.error_api)
 
-            Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, message, Toast.LENGTH_LONG).show()
         }
     }
 }

@@ -4,40 +4,33 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.picpay.desafio.android.domain.api.PicPayService
+import com.picpay.desafio.android.data.repository.GetUserRepository
 import com.picpay.desafio.android.domain.model.User
+import com.picpay.desafio.android.utils.result
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class MainViewModel(private val picPayService: PicPayService) : ViewModel() {
+class MainViewModel(private val repository: GetUserRepository) : ViewModel() {
 
-    private val internalContactsList = MutableLiveData<List<User>>()
-    private val internalFailure = MutableLiveData<Throwable>()
-    private val internalLoading = MutableLiveData<Boolean>()
+    private val internalUserList = MutableLiveData<List<User>>()
+    private val internalFailure = MutableLiveData<String>()
 
-    val contactsList: LiveData<List<User>> = internalContactsList
-    val failure: LiveData<Throwable> = internalFailure
-    val loading: LiveData<Boolean> = internalLoading
+    val contactsList: LiveData<List<User>> = internalUserList
+    val failure: LiveData<String> = internalFailure
 
     fun init() {
         viewModelScope.launch {
-            internalLoading.value = true
-            getListUser()
-            internalLoading.value = false
+            repository.getListUsers().result(
+                onSuccess = ::onGetUserSuccess,
+                onError = ::onFailure,
+            )
         }
     }
 
-    private fun getListUser() {
-        picPayService.getUsers().enqueue(object : Callback<List<User>> {
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                internalFailure.value = t
-            }
+    private fun onGetUserSuccess(listUser: List<User>){
+        internalUserList.value = listUser
+    }
 
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                internalContactsList.value = response.body()
-            }
-        })
+    private fun onFailure(error: String){
+        internalFailure.value = error
     }
 }
