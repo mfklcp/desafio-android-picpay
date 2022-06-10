@@ -43,7 +43,7 @@ class ApiBuilder(context: Context) {
             val urlc: HttpURLConnection = URL("http://www.google.com").openConnection() as HttpURLConnection
             urlc.setRequestProperty("User-Agent", "Test")
             urlc.setRequestProperty("Connection", "close")
-            urlc.connectTimeout = 1500
+            urlc.connectTimeout = 100
             urlc.connect()
             return urlc.responseCode == 200
         } catch (e: Exception) {}
