@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="ScreenTitleTextView" parent="TextAppearance.AppCompat">
+    <style name="ScreenTitleTextViewContacts" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/picpay_ts_xxl</item>
         <item name="android:textStyle">bold</item>
