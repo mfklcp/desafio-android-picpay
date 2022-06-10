@@ -1,17 +1,16 @@
 package com.picpay.desafio.android.presentation.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.picpay.desafio.android.R
+import com.picpay.desafio.android.databinding.ListItemUserBinding
 import com.picpay.desafio.android.domain.model.User
 import com.picpay.desafio.android.utils.extensions.gone
 import com.picpay.desafio.android.utils.extensions.visible
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.list_item_user.view.*
 
 class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserListItemViewHolder>() {
 
@@ -28,10 +27,8 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserListItemViewHol
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserListItemViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item_user, parent, false)
-
-        return UserListItemViewHolder(view)
+        val itemBinding = ListItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return UserListItemViewHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: UserListItemViewHolder, position: Int) {
@@ -40,21 +37,21 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserListItemViewHol
 
     override fun getItemCount(): Int = users.size
 
-    class UserListItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class UserListItemViewHolder(private val itemBinding: ListItemUserBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(user: User) {
-            itemView.nameItemUser.text = user.name
-            itemView.usernameItemUser.text = user.username
-            itemView.progressBarItemUser.visible()
+            itemBinding.nameItemUser.text = user.name
+            itemBinding.usernameItemUser.text = user.username
+            itemBinding.progressBarItemUser.visible()
             Picasso.get()
                 .load(user.img)
                 .error(R.drawable.ic_round_account_circle)
-                .into(itemView.pictureItemUser, object : Callback {
+                .into(itemBinding.pictureItemUser, object : Callback {
                     override fun onSuccess() {
-                        itemView.progressBarItemUser.gone()
+                        itemBinding.progressBarItemUser.gone()
                     }
 
                     override fun onError(e: Exception?) {
-                        itemView.progressBarItemUser.gone()
+                        itemBinding.progressBarItemUser.gone()
                     }
                 })
         }

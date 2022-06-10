@@ -1,6 +1,6 @@
 package com.picpay.desafio.android.di.modules
 
-import com.picpay.desafio.android.data.api.PicPayApi
+import com.picpay.desafio.android.service.api.PicPayApi
 import org.koin.dsl.module
 
 class ApiModule {
