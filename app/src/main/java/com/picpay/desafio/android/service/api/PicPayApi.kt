@@ -1,6 +1,6 @@
-package com.picpay.desafio.android.data.api
+package com.picpay.desafio.android.service.api
 
-import com.picpay.desafio.android.domain.model.User
+import com.picpay.desafio.android.service.model.UserResponse
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -9,7 +9,7 @@ import retrofit2.http.GET
 interface PicPayApi {
 
     @GET("users")
-    suspend fun getUsers(): List<User>
+    suspend fun getUsers(): List<UserResponse>
 
     companion object {
         private const val BASE_URL = "https://609a908e0f5a13001721b74e.mockapi.io/picpay/api/"

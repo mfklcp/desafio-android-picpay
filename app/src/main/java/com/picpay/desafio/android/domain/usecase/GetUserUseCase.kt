@@ -1,16 +1,21 @@
 package com.picpay.desafio.android.domain.usecase
 
-import com.picpay.desafio.android.data.repository.GetUserRepository
 import com.picpay.desafio.android.domain.model.User
+import com.picpay.desafio.android.service.mapper.UserMapper
+import com.picpay.desafio.android.service.model.UserResponse
+import com.picpay.desafio.android.service.repository.GetUserRepository
 import com.picpay.desafio.android.utils.PicPayResult
 
-class GetUserUseCase(private val getUserRepository: GetUserRepository) {
+class GetUserUseCase(
+    private val getUserRepository: GetUserRepository,
+    private val userMapper: UserMapper
+) {
 
     suspend fun invoke(): PicPayResult<List<User>> {
         return try {
-            val result: List<User> = getUserRepository.getListUsers()
+            val result: List<UserResponse> = getUserRepository.getListUsers()
             if (result.isNotEmpty()) {
-                PicPayResult.Success(sortUsers(result))
+                PicPayResult.Success(sortUsers(userMapper.mapToUser(result)))
             } else {
                 PicPayResult.Error(API_FAIL)
             }

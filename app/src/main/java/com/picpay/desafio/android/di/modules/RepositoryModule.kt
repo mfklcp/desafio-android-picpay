@@ -1,6 +1,6 @@
 package com.picpay.desafio.android.di.modules
 
-import com.picpay.desafio.android.data.repository.GetUserRepository
+import com.picpay.desafio.android.service.repository.GetUserRepository
 import org.koin.dsl.module
 
 class RepositoryModule  {

@@ -1,13 +1,12 @@
 package com.picpay.desafio.android.domain.model
 
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class User(
-    @SerializedName("id") val id: Int,
-    @SerializedName("img") val img: String,
-    @SerializedName("name") val name: String,
-    @SerializedName("username") val username: String
+    val id: Int,
+    val img: String,
+    val name: String,
+    val username: String
 ) : Parcelable

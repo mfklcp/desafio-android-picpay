@@ -8,6 +8,6 @@ class UseCaseModule {
     fun provide() = listOf(useCaseModule)
 
     private val useCaseModule = module {
-        single<GetUserUseCase> { GetUserUseCase(get()) }
+        single<GetUserUseCase> { GetUserUseCase(get(), get()) }
     }
 }
