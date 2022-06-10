@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.picpay.desafio.android.data.repository.GetUserRepository
 import com.picpay.desafio.android.domain.model.User
+import com.picpay.desafio.android.domain.usecase.GetUserUseCase
 import com.picpay.desafio.android.utils.result
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repository: GetUserRepository) : ViewModel() {
+class MainViewModel(private val getUserUseCase: GetUserUseCase) : ViewModel() {
 
     private val internalUserList = MutableLiveData<List<User>>()
     private val internalFailure = MutableLiveData<String>()
@@ -19,7 +19,7 @@ class MainViewModel(private val repository: GetUserRepository) : ViewModel() {
 
     fun init() {
         viewModelScope.launch {
-            repository.getListUsers().result(
+            getUserUseCase.invoke().result(
                 onSuccess = ::onGetUserSuccess,
                 onError = ::onFailure,
             )
