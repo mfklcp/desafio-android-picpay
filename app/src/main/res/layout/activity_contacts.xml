@@ -14,60 +14,60 @@
         android:id="@+id/emptyImageContacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:importantForAccessibility="no"
         android:src="@drawable/ic_empty_list"
         android:visibility="gone"
-        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/loadingContacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonLoadAgainContacts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/load_again"
-        android:visibility="gone"
-        android:layout_marginBottom="@dimen/picpay_s_xs"
-        android:paddingHorizontal="@dimen/picpay_s_s"
-        style="@style/AppTheme">
-    </Button>
-
-    <TextView
-        android:id="@+id/titleContacts"
-        style="@style/ScreenTitleTextViewContacts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/picpay_s_s"
-        android:layout_marginTop="@dimen/picpay_s_xl"
-        android:text="@string/title_contacts"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollContacts"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/buttonLoadAgainContacts"
+        style="@style/AppTheme"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/picpay_s_xs"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="@dimen/picpay_s_xs"
+        android:paddingHorizontal="@dimen/picpay_s_s"
+        android:text="@string/load_again"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleContacts">
+        app:layout_constraintStart_toStartOf="parent">
+    </Button>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/titleContacts"
+            style="@style/ScreenTitleTextViewContacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/picpay_s_s"
+            android:layout_marginTop="@dimen/picpay_s_xl"
+            android:text="@string/title_contacts" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollContacts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/picpay_s_xs">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewContacts"
@@ -78,7 +78,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/list_item_user" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
-
