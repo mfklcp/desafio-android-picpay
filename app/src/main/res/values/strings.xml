@@ -2,5 +2,6 @@
     <string name="app_name">PicPay</string>
     <string name="title_contacts">Contatos</string>
     <string name="error_api">Ocorreu um erro. Tente novamente.</string>
+    <string name="load_again">carregar novamente</string>
 
 </resources>

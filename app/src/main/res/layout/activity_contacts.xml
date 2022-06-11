@@ -31,6 +31,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/buttonLoadAgainContacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/load_again"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/picpay_s_xs"
+        android:paddingHorizontal="@dimen/picpay_s_s"
+        style="@style/AppTheme">
+    </Button>
+
     <TextView
         android:id="@+id/titleContacts"
         style="@style/ScreenTitleTextViewContacts"

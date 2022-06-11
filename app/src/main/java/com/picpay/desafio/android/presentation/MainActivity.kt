@@ -36,6 +36,12 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         createRecyclerView()
         mainBinding.loadingContacts.visible()
+        mainBinding.buttonLoadAgainContacts.setOnClickListener {
+            mainBinding.loadingContacts.visible()
+            mainBinding.emptyImageContacts.gone()
+            mainBinding.buttonLoadAgainContacts.gone()
+            mainViewModel.init()
+        }
     }
 
     private fun createRecyclerView() {
@@ -51,18 +57,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeData() {
         mainViewModel.contactsList.observe(this) { users ->
+            mainBinding.recyclerViewContacts.visible()
             mainBinding.loadingContacts.gone()
             mainBinding.emptyImageContacts.gone()
+            mainBinding.buttonLoadAgainContacts.gone()
             userListAdapter.users = users
         }
 
         mainViewModel.failure.observe(this) {
+            mainBinding.loadingContacts.gone()
             mainBinding.recyclerViewContacts.gone()
+            mainBinding.buttonLoadAgainContacts.visible()
             mainBinding.emptyImageContacts.visible()
 
-            val message = getString(R.string.error_api)
-
-            Toast.makeText(this@MainActivity, message, Toast.LENGTH_LONG).show()
+            Toast
+                .makeText(this@MainActivity, getString(R.string.error_api), Toast.LENGTH_SHORT)
+                .show()
         }
     }
 }
