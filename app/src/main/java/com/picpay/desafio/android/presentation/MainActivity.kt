@@ -1,10 +1,8 @@
 package com.picpay.desafio.android.presentation
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.picpay.desafio.android.R
 import com.picpay.desafio.android.databinding.ActivityContactsBinding
 import com.picpay.desafio.android.databinding.ListItemUserBinding
 import com.picpay.desafio.android.presentation.adapter.UserListAdapter
@@ -40,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             mainBinding.loadingContacts.visible()
             mainBinding.emptyImageContacts.gone()
             mainBinding.buttonLoadAgainContacts.gone()
+            mainBinding.tvLoadingFailed.gone()
             mainViewModel.init()
         }
     }
@@ -61,6 +60,7 @@ class MainActivity : AppCompatActivity() {
             mainBinding.loadingContacts.gone()
             mainBinding.emptyImageContacts.gone()
             mainBinding.buttonLoadAgainContacts.gone()
+            mainBinding.tvLoadingFailed.gone()
             userListAdapter.users = users
         }
 
@@ -69,10 +69,7 @@ class MainActivity : AppCompatActivity() {
             mainBinding.recyclerViewContacts.gone()
             mainBinding.buttonLoadAgainContacts.visible()
             mainBinding.emptyImageContacts.visible()
-
-            Toast
-                .makeText(this@MainActivity, getString(R.string.error_api), Toast.LENGTH_SHORT)
-                .show()
+            mainBinding.tvLoadingFailed.visible()
         }
     }
 }

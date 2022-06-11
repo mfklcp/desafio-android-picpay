@@ -10,7 +10,18 @@
 
     <style name="ScreenTitleTextViewContacts" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/picpay_ts_xxl</item>
+        <item name="android:textSize">@dimen/picpay_ts_xl</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="RoundedButtonPicpay">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/picpay_ts_xxs</item>
+    </style>
+
+    <style name="SecondaryTitlePicpay" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/picpay_ts_xs</item>
         <item name="android:textStyle">bold</item>
     </style>
 

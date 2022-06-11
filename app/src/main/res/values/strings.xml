@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PicPay</string>
     <string name="title_contacts">Contatos</string>
-    <string name="error_api">Ocorreu um erro. Tente novamente.</string>
-    <string name="load_again">carregar novamente</string>
+    <string name="load_again">tentar novamente</string>
+    <string name="failed_to_load_data">Não foi possível carregar os dados 😞</string>
 
 </resources>

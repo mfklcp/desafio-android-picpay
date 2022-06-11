@@ -7,5 +7,9 @@
     <dimen name="picpay_s_xl">48dp</dimen>
     <dimen name="picpay_s_xxl">52dp</dimen>
 
-    <dimen name="picpay_ts_xxl">28sp</dimen>
+    <dimen name="picpay_ts_xxs">12sp</dimen>
+    <dimen name="picpay_ts_xs">16sp</dimen>
+    <dimen name="picpay_ts_s">24sp</dimen>
+    <dimen name="picpay_ts_xl">28sp</dimen>
+    <dimen name="picpay_ts_xxl">52sp</dimen>
 </resources>
