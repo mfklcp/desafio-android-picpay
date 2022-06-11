@@ -3,6 +3,7 @@ package com.picpay.desafio.android.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.picpay.desafio.android.databinding.ActivityContactsBinding
 import com.picpay.desafio.android.databinding.ListItemUserBinding
 import com.picpay.desafio.android.presentation.adapter.UserListAdapter
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         mainBinding.recyclerViewContacts.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = userListAdapter
+            userListAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         }
     }
 
