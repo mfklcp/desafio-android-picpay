@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
         createRecyclerView()
+        mainBinding.loadingContacts.visible()
     }
 
     private fun createRecyclerView() {
@@ -50,8 +51,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeData() {
         mainViewModel.contactsList.observe(this) { users ->
-            userListAdapter.users = users
+            mainBinding.loadingContacts.gone()
             mainBinding.emptyImageContacts.gone()
+            userListAdapter.users = users
         }
 
         mainViewModel.failure.observe(this) {
