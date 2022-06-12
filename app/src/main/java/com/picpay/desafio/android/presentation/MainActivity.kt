@@ -35,10 +35,10 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         createRecyclerView()
         mainBinding.loadingContacts.visible()
-        mainBinding.buttonLoadAgainContacts.setOnClickListener {
+        mainBinding.btTryAgainContacts.setOnClickListener {
             mainBinding.loadingContacts.visible()
             mainBinding.emptyImageContacts.gone()
-            mainBinding.buttonLoadAgainContacts.gone()
+            mainBinding.btTryAgainContacts.gone()
             mainBinding.tvLoadingFailed.gone()
             mainViewModel.init()
         }
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             mainBinding.recyclerViewContacts.visible()
             mainBinding.loadingContacts.gone()
             mainBinding.emptyImageContacts.gone()
-            mainBinding.buttonLoadAgainContacts.gone()
+            mainBinding.btTryAgainContacts.gone()
             mainBinding.tvLoadingFailed.gone()
             userListAdapter.users = users
         }
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.failure.observe(this) {
             mainBinding.loadingContacts.gone()
             mainBinding.recyclerViewContacts.gone()
-            mainBinding.buttonLoadAgainContacts.visible()
+            mainBinding.btTryAgainContacts.visible()
             mainBinding.emptyImageContacts.visible()
             mainBinding.tvLoadingFailed.visible()
         }

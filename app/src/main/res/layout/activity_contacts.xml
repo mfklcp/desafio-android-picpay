@@ -81,7 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/emptyImageContacts" />
 
     <Button
-        android:id="@+id/buttonLoadAgainContacts"
+        android:id="@+id/btTryAgainContacts"
         style="@style/RoundedButtonPicpay"
         android:background="@drawable/bt_rounded_picpay"
         android:layout_width="match_parent"
